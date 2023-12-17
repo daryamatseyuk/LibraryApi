@@ -1,4 +1,6 @@
-package com.library.utility;
+package com.library.utility.db;
+
+import com.library.utility.ConfigurationReader;
 
 import java.sql.*;
 import java.util.ArrayList;

@@ -1,6 +1,7 @@
-package com.library.utility;
+package com.library.utility.api;
 
 import com.github.javafaker.Faker;
+import com.library.utility.ConfigurationReader;
 import io.restassured.http.ContentType;
 
 import java.util.LinkedHashMap;
@@ -19,7 +20,7 @@ public class LibraryAPI_Util {
     public static String getToken(String userType){
 
 
-        String email=ConfigurationReader.getProperty(userType+"_username");
+        String email= ConfigurationReader.getProperty(userType+"_username");
         String password=ConfigurationReader.getProperty(userType + "_password");
 
 

@@ -1,6 +1,6 @@
 package com.library.pages;
 
-import com.library.utility.Driver;
+import com.library.utility.ui.Driver;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

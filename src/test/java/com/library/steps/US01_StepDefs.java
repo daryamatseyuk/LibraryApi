@@ -1,32 +1,24 @@
 package com.library.steps;
 
 import com.library.utility.ConfigurationReader;
-import com.library.utility.LibraryAPI_Util;
+import com.library.utility.api.LibraryAPI_Util;
+import com.library.utility.api.LibraryTestBase;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
-import io.restassured.response.Response;
-import io.restassured.response.Validatable;
-import io.restassured.response.ValidatableResponse;
-import io.restassured.specification.RequestSpecification;
-import org.hamcrest.Matchers;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
-public class US01_StepDefs {
+public class US01_StepDefs extends LibraryTestBase {
 
-    RequestSpecification request;
-    Response response;
-    ValidatableResponse validatableResponse;
+
 
     @Given("I logged Library api as a {string}")
     public void i_logged_library_api_as_a(String userType) {
 
         request = given().log().all()
-                .header("x-library-token", LibraryAPI_Util.getToken(userType));
+                .header("x-library-token", LibraryAPI_Util.getToken(userType)).baseUri(ConfigurationReader.getProperty("library.baseUri"));
 
     }
     @Given("Accept header is {string}")
@@ -38,7 +30,7 @@ public class US01_StepDefs {
     @When("I send GET request to {string} endpoint")
     public void i_send_get_request_to_endpoint(String endpoint) {
 
-        response = request.when().get(ConfigurationReader.getProperty("library.baseUri") + endpoint).prettyPeek();
+        response = request.when().get(endpoint).prettyPeek();
         validatableResponse = response.then();
     }
     @Then("status code should be {int}")

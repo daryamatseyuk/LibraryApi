@@ -8,6 +8,8 @@ import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import io.restassured.response.Validatable;
+import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 import org.hamcrest.Matchers;
 
@@ -18,6 +20,7 @@ public class US01_StepDefs {
 
     RequestSpecification request;
     Response response;
+    ValidatableResponse validatableResponse;
 
     @Given("I logged Library api as a {string}")
     public void i_logged_library_api_as_a(String userType) {
@@ -36,23 +39,24 @@ public class US01_StepDefs {
     public void i_send_get_request_to_endpoint(String endpoint) {
 
         response = request.when().get(ConfigurationReader.getProperty("library.baseUri") + endpoint).prettyPeek();
+        validatableResponse = response.then();
     }
     @Then("status code should be {int}")
     public void status_code_should_be(Integer statusCode) {
 
-        response.then().statusCode(statusCode).log().all();
+        validatableResponse.statusCode(statusCode).log().all();
 
     }
     @Then("Response Content type is {string}")
     public void response_content_type_is(String contentType) {
 
-        response.then().contentType(contentType);
+        validatableResponse.contentType(contentType);
 
     }
     @Then("{string} field should not be null")
     public void field_should_not_be_null(String path) {
 
-        response.then().body(path, everyItem(notNullValue()));
+        validatableResponse.body(path, everyItem(notNullValue()));
 
     }
 

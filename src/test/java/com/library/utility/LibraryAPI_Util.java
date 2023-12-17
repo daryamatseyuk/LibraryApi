@@ -20,7 +20,7 @@ public class LibraryAPI_Util {
 
 
         String email=ConfigurationReader.getProperty(userType+"_username");
-        String password="libraryUser";
+        String password=ConfigurationReader.getProperty(userType + "_password");
 
 
 
@@ -38,7 +38,6 @@ public class LibraryAPI_Util {
                 .formParam("password" , password).
                 when()
                 .post(ConfigurationReader.getProperty("library.baseUri")+"/login")
-                .prettyPeek()
                 .then().statusCode(200)
                 .extract().jsonPath().getString("token");
 

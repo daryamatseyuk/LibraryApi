@@ -24,7 +24,11 @@ public class US01_StepDefs extends LibraryTestBase {
     @Given("Accept header is {string}")
     public void accept_header_is(String contentType) {
 
-        request.accept(contentType);
+        if (request == null){
+            request = given().accept(contentType);
+        }else {
+            request.accept(contentType);
+        }
 
     }
     @When("I send GET request to {string} endpoint")

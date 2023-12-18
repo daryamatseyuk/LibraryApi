@@ -1,5 +1,6 @@
 package com.library.steps;
 
+import com.library.utility.ConfigurationReader;
 import com.library.utility.api.LibraryAPI_Util;
 import com.library.utility.api.LibraryTestBase;
 import io.cucumber.java.en.And;
@@ -20,17 +21,10 @@ public class US05_StepDefs extends LibraryTestBase {
 
     @Given("I send token information as request body")
     public void i_send_token_information_as_request_body() {
-        request.formParam("token", token);
+        request.formParam("token", token)
+                .baseUri(ConfigurationReader.getProperty("library.baseUri"));
     }
 
-//    @Test
-//    public void test(){
-//        given().log().all().accept(ContentType.JSON)
-//                .contentType(ContentType.URLENC)
-//                .body("token="+ token)
-//                .when().post("https://library2.cydeo.com/rest/v1/decode")
-//                .then().statusCode(200).extract().response().prettyPeek();
-//    }
 
 
 }

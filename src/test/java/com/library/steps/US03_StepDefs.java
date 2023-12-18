@@ -29,7 +29,7 @@ public class US03_StepDefs extends LibraryTestBase {
     }
     @Given("I create a random {string} as request body")
     public void i_create_a_random_as_request_body(String requestBody) {
-        request.formParams(LibraryAPI_Util.getRandomBookMap());
+        request.formParams(LibraryAPI_Util.getRandomDataMap(requestBody));
     }
     @When("I send POST request to {string} endpoint")
     public void i_send_post_request_to_endpoint(String endpoint) {

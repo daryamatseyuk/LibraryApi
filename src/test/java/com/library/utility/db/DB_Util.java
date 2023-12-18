@@ -343,12 +343,13 @@ public class DB_Util {
 
     /**
      * Save entire row data as Map<String,String>
+     *
      * @param rowNum row number
      * @return Map object that contains key value pair
-     *      key     : column name
-     *      value   : cell value
+     * key     : column name
+     * value   : cell value
      */
-    public static Map<String,Object> getRowMap(int rowNum){
+    public static Map<String, Object> getRowMap(int rowNum){
 
         Map<String,Object> rowMap = new LinkedHashMap<>();
         int columnCount = getColumnCount() ;

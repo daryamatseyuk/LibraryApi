@@ -45,8 +45,8 @@ public class US01_StepDefs extends LibraryTestBase {
         validatableResponse.contentType(contentType);
 
     }
-    @Then("{string} field should not be null")
-    public void field_should_not_be_null(String path) {
+    @Then("{string} fields should not be null")
+    public void fields_should_not_be_null(String path) {
 
         validatableResponse.body(path, everyItem(notNullValue()));
 

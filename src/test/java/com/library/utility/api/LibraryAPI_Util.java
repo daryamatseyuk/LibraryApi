@@ -81,6 +81,15 @@ public class LibraryAPI_Util {
         return userMap ;
     }
 
+    public static Map<String,Object> getBookByID(String id){
+        return given()
+                .accept(ContentType.JSON)
+                .header("x-library-token",getToken("librarian"))
+                .pathParam("id",id)
+                .when().get(ConfigurationReader.getProperty("library.baseUri")+"/get_book_by_id/{id}")
+                .then().statusCode(200)
+                .extract().body().as(Map.class);
+    }
 
 
 

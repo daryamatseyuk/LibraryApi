@@ -12,7 +12,7 @@ Feature: As a librarian, I want to create a new user
     And "user_id" field should not be null
 
 
-@db @ui @us04
+  @db @ui @us04
   Scenario: Create a new user all layers
     Given I logged Library api as a "librarian"
     And Accept header is "application/json"

@@ -19,9 +19,7 @@ import static org.hamcrest.Matchers.*;
 
 public class US03_StepDefs extends LibraryTestBase {
 
-    LoginPage loginPage = new LoginPage();
 
-    BookPage bookPage = new BookPage();
 
     @Given("Request Content Type header is {string}")
     public void request_content_type_header_is(String contentType) {
@@ -49,14 +47,17 @@ public class US03_StepDefs extends LibraryTestBase {
     }
     @Given("I logged in Library UI as {string}")
     public void i_logged_in_library_ui_as(String role) {
+        LoginPage loginPage = new LoginPage();
         loginPage.login(role);
     }
     @Given("I navigate to {string} page")
     public void i_navigate_to_page(String pageName) {
+        BookPage bookPage = new BookPage();
         bookPage.navigateModule(pageName);
     }
     @Then("UI, Database and API created book information must match")
     public void ui_database_and_api_created_book_information_must_match() {
+        BookPage bookPage = new BookPage();
         //value of book id as string
         String bookId = validatableResponse.extract().jsonPath().getString("book_id");
 
